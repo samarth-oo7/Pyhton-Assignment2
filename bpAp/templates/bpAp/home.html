@@ -1,0 +1,33 @@
+{% extends "bpAp/base.html" %}
+
+{% block title %}Home - My Blog{% endblock %}
+
+{% block content %}
+<section class="latest-posts">
+    <h2>Latest Posts</h2>
+    {% for post in latest_posts %}
+    <article>
+        <h3>{{ post.title }}</h3>
+        <p><em>>By {{ post.author }} | Published {{ post.published|date:"F j, Y" }}</em></p>
+        <p>{{ post.content|linebreaks }}</p>
+    </article>
+    {% empty %}
+    <p>No recent posts available.</p>
+    {% endfor %}
+</section>
+{% endblock %}
+
+{% block sidebar %}
+<section class="topics">
+    <h3>Topics</h3>
+    <ul>
+        {% for topic in topics %}
+        <li>
+            {{ topic.name }} ({{ topic.post_count }})
+        </li>
+        {% empty %}
+        <li>No topics available.</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
