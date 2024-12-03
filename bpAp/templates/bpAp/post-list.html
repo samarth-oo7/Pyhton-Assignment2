@@ -1,0 +1,19 @@
+{% extends  "bpAp/base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block main %}
+<h1>Posts</h1>
+
+{% for post in posts %}
+  <article class="post-preview">
+    <h2>{{ post.title }}</h2>
+    <time>{{ post.published }}</time>
+    <section class="teaser">
+      {{ post.content|truncatewords:20 }}
+      <p><a href="{{ topic.get_absolute_url }}">Read more &rarr;</a></p>
+    </section>
+  </article>
+{% endfor %}
+
+{% endblock %}

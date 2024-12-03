@@ -17,7 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from bpAp import views 
+from bpAp.views import TopicListView, TopicDetailView, PostListView,PostDetailView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('', views.home, name='home'),
+     path('topics/', TopicListView.as_view(), name='topic_list'),
+      path('topics/<slug:slug>/', TopicDetailView.as_view(), name='topic_detail'),
+     
+      path('posts/',PostListView.as_view(), name='post-list'),
+    path(
+        'posts/<int:year>/<int:month>/<int:day>/<slug:slug>/',
+        views.PostDetailView.as_view(),
+        name='post-detail',
+    ),
+    
 ]

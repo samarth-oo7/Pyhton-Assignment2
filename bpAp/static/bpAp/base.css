@@ -37,3 +37,20 @@ footer {
   color: white;
   margin-top: 1rem;
 }
+.post-preview {
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.post-preview h2 {
+  margin-bottom: 0.5rem;
+}
+
+.post-preview time {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.post-preview section {
+  margin-top: 1rem;
+}
