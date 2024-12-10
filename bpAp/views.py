@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Count
+from django.contrib import messages
+from .forms import ContestSubmissionForm
 from .models import Topic, Post
 from django.views.generic import ListView, DetailView
 
@@ -56,3 +58,15 @@ class PostDetailView(DetailView):
             published__month=self.kwargs['month'],
             published__day=self.kwargs['day'],
         )
+    
+def photo_contest(request):
+    if request.method == 'POST':
+        form = ContestSubmissionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your submission has been received!")
+            return redirect('photo_contest')
+    else:
+        form = ContestSubmissionForm()
+    
+    return render(request, 'bpAp/photo_contest.html', {'form': form})

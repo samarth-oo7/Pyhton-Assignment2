@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from bpAp import views 
+from django.conf.urls.static import static
+from django.conf import settings
 from bpAp.views import TopicListView, TopicDetailView, PostListView,PostDetailView
 
 urlpatterns = [
@@ -31,5 +33,5 @@ urlpatterns = [
         views.PostDetailView.as_view(),
         name='post-detail',
     ),
-    
-]
+    path('photo-contest/', views.photo_contest, name='photo_contest'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

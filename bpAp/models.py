@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.urls import reverse
+from django.utils.timezone import now
 
 User = get_user_model()
 
@@ -58,3 +59,11 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
 
+class ContestSubmission(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    image = models.ImageField(upload_to='contest_photos/')
+    submission_date = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f'{self.name} - {self.email}'

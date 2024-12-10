@@ -1,0 +1,11 @@
+{% extends "bpAp/base.html" %}
+{% block content %}
+<h1>Photo Contest</h1>
+<p>Submit your photo and win exciting prizes!</p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

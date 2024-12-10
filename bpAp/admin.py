@@ -1,5 +1,12 @@
 from django.contrib import admin
 from .models import Post,Comment,Topic
+from .models import ContestSubmission
+
+@admin.register(ContestSubmission)
+class ContestSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'submission_date')
+    list_filter = ('submission_date',)
+    search_fields = ('name', 'email')
 
 
 class CommentAdmin(admin.ModelAdmin):
